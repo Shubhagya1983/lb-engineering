@@ -3,34 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LB Engineering | Industrial Automation & E-Commerce</title>
-    <!-- Google SEO & Meta Tags for LB Engineering -->
-    <meta name="description" content="LB Engineering - Industrial Automation Solutions Provider. Premium PLCs, VFDs, HMIs, Sensors and Elite Engineering Services.">
-    <meta name="keywords" content="LB Engineering, LB Engineering Sri Lanka, Industrial Automation, PLC programming, VFD Troubleshooting, Homagama">
-    <meta name="author" content="LB Engineering">
-    <meta property="og:title" content="LB Engineering | Industrial Automation Solutions">
-    <meta property="og:description" content="Premium Automation Products & Technical Support.">
-    <meta property="og:url" content="https://shubhagya1983.github.io/lb-engineering/">
+    <title>LB Engineering - Industrial Automation Solutions</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
+    <!-- Header Navigation -->
     <header>
-        <div class="logo">
-            <i class="fa-solid fa-gears icon-accent"></i> LB <span>Engineering</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#dashboard" onclick="toggleDashboard()">Admin Portal</a></li>
-            </ul>
-        </nav>
-        <div class="nav-right">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-gear-spin icon-spin" style="color:#ff4757; margin-right:10px;"></i>
+                <span style="color:#fff; font-weight:800;">LB</span> <span style="color:#ff4757; font-weight:800;">Engineering</span>
+            </div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#services">Services</a>
+                <a href="javascript:void(0)" onclick="toggleDashboard()">Admin Portal</a>
+            </nav>
             <div class="cart-icon" onclick="toggleCart()">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span id="cart-count">0</span>
@@ -39,116 +30,225 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
+    <section class="hero" id="home">
         <div class="hero-content">
             <h1>Premium Industrial Automation Solutions</h1>
             <p>Your trusted partner for PLCs, VFDs, HMIs, Sensors, and Elite Engineering Services.</p>
-            <a href="#products" class="btn-primary">Explore Products <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#products" class="btn-hero">Explore Products <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </section>
 
-    <!-- Main Content Area -->
-    <main class="container">
+    <!-- Products Store Section -->
+    <section class="products-section" id="products">
+        <div class="section-title">
+            <h2>Automation Equipment Store</h2>
+        </div>
         
-        <!-- Products Showcase -->
-        <section id="products" class="section">
-            <h2 class="section-title">Automation Equipment Store</h2>
-            <div class="category-filter">
-                <button class="filter-btn active" onclick="filterCategory('all')">All Products</button>
-                <button class="filter-btn" onclick="filterCategory('PLC')">PLC Systems</button>
-                <button class="filter-btn" onclick="filterCategory('VFD')">VFD / Inverters</button>
-                <button class="filter-btn" onclick="filterCategory('HMI')">HMI Panels</button>
-                <button class="filter-btn" onclick="filterCategory('Sensors')">Sensors</button>
-            </div>
-            
-            <div class="products-grid" id="products-container">
-                <!-- Dynamic Products Load Via JS -->
-            </div>
-        </section>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterCategory('all')">All Products</button>
+            <button class="filter-btn" onclick="filterCategory('PLC')">PLC Systems</button>
+            <button class="filter-btn" onclick="filterCategory('VFD')">VFD / Inverters</button>
+            <button class="filter-btn" onclick="filterCategory('HMI')">HMI Panels</button>
+            <button class="filter-btn" onclick="filterCategory('Sensors')">Sensors</button>
+        </div>
 
-        <!-- Services Section -->
-        <section id="services" class="section bg-light">
-            <h2 class="section-title">Engineering & Technical Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fa-solid fa-code-branch service-icon"></i>
-                    <h3>PLC Programming</h3>
-                    <p>Custom logic design, programming, and modifications for industrial systems.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-desktop service-icon"></i>
-                    <h3>HMI / SCADA Design</h3>
-                    <p>Intuitive user interface development for seamless machine operations.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-bolt service-icon"></i>
-                    <h3>VFD Setup & Tuning</h3>
-                    <p>Variable Frequency Drive installation, parameter configuration, and fault diagnosis.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+        <div class="products-grid" id="products-container">
+            <!-- Products will load here dynamically via JavaScript -->
+        </div>
+    </section>
 
-    <!-- Shopping Cart Sidebar -->
-    <div id="cart-sidebar" class="sidebar">
-        <div class="sidebar-header">
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
             <h3>Your Shopping Cart</h3>
-            <span class="close-btn" onclick="toggleCart()">&times;</span>
+            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()"></i>
         </div>
-        <div class="sidebar-content" id="cart-items">
-            <!-- Cart Items Dynamic -->
+        <div class="cart-body" id="cart-items">
+            <!-- Cart items will display here -->
         </div>
-        <div class="sidebar-footer">
-            <div class="total-price">Total: LKR <span id="cart-total">0.00</span></div>
-            <button class="btn-checkout" onclick="checkoutOrder()">Place Order & Pay</button>
+        <div class="cart-footer">
+            <div class="total-container">
+                <span>Total:</span>
+                <span>LKR <span id="cart-total">0</span></span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutOrder()">Checkout Order</button>
         </div>
     </div>
 
-    <!-- Admin / Inventory Dashboard Modal -->
-    <div id="dashboard-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fa-solid fa-chart-line"></i> Inventory & Stock Management Control Panel</h2>
-                <span class="close-btn" onclick="toggleDashboard()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="dashboard-grid">
-                    <!-- Stock Alert Notification Board -->
-                    <div class="dashboard-card alert-card">
-                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Low Stock System Alerts</h3>
-                        <ul id="low-stock-list">
-                            <!-- Low stock alerts dynamic -->
-                        </ul>
-                    </div>
-                    
-                    <!-- Stock Control Form -->
-                    <div class="dashboard-card">
-                        <h3><i class="fa-solid fa-boxes-stacked"></i> Update Product Stock / Price</h3>
-                        <form id="stock-form" onsubmit="updateStock(event)">
-                            <div class="form-group">
-                                <label for="select-product">Select Product Item</label>
-                                <select id="select-product" required></select>
-                            </div>
-                            <div class="form-group">
-                                <label for="input-stock">New Stock Quantity (Units)</label>
-                                <input type="number" id="input-stock" min="0" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="input-price">Update Price (LKR)</label>
-                                <input type="number" id="input-price" min="0" required>
-                            </div>
-                            <button type="submit" class="btn-primary">Apply Update Logs</button>
-                        </form>
-                    </div>
+    <!-- Admin Dashboard Modal -->
+    <div class="dashboard-modal" id="dashboard-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:2000; align-items:center; justify-content:center;">
+        <div class="dashboard-content" style="background:#fff; padding:30px; border-radius:10px; width:90%; max-width:500px; position:relative;">
+            <i class="fa-solid fa-xmark" style="position:absolute; top:15px; right:20px; font-size:1.5rem; cursor:pointer;" onclick="toggleDashboard()"></i>
+            <h3 style="margin-bottom:20px; color:#2c3e50;"><i class="fa-solid fa-sliders"></i> Control Panel / Price Editor</h3>
+            
+            <form id="stock-form" onsubmit="updateStock(event)">
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:600;">Select Product Item:</label>
+                    <select id="select-product" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;"></select>
                 </div>
-            </div>
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:600;">New Price (LKR):</label>
+                    <input type="number" id="new-price" placeholder="Enter new price" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:600;">Update Stock Level:</label>
+                    <input type="number" id="new-stock" placeholder="Enter stock quantity" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                </div>
+                <button type="submit" style="width:100%; background:#ff4757; color:#fff; border:none; padding:12px; font-weight:bold; border-radius:5px; cursor:pointer;">Apply Update Logs</button>
+            </form>
+            
+            <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
+            <h4 style="color:#ff4757; margin-bottom:10px;"><i class="fa-solid fa-bell"></i> Critical Stock Logs</h4>
+            <ul id="low-stock-list" style="list-style:none; padding:0; font-size:0.9rem;"></ul>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 LB Engineering - Industrial Automation Solutions Provider. All Rights Reserved.</p>
-    </footer>
+    <!-- JavaScript Inventory Logic Section -->
+    <script>
+        let products = [
+            { id: 1, name: "T200-0R75G-2", model: "T200-0R75G-2", brand: "Zoncn", category: "VFD", spec: "230v input 0.75kw", price: 32200, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 2, name: "T200-0R75G-4", model: "T200-0R75G-4", brand: "Zoncn", category: "VFD", spec: "380v input 0.75kw", price: 33350, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 3, name: "T200-1R5G-2", model: "T200-1R5G-2", brand: "Zoncn", category: "VFD", spec: "230v input 1.5kw", price: 34500, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 4, name: "T200-1R5G-4", model: "T200-1R5G-4", brand: "Zoncn", category: "VFD", spec: "380v input 1.5kw", price: 35650, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 5, name: "T200-2R2G-2", model: "T200-2R2G-2", brand: "Zoncn", category: "VFD", spec: "230v input 2.2kw", price: 43470, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 6, name: "T200-2R2G-4", model: "T200-2R2G-4", brand: "Zoncn", category: "VFD", spec: "380v input 2.2kw", price: 45080, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 7, name: "T200-3R7G-2", model: "T200-3R7G-2", brand: "Zoncn", category: "VFD", spec: "230v input 3.7kw", price: 61640, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 8, name: "T200-3R7G-4", model: "T200-3R7G-4", brand: "Zoncn", category: "VFD", spec: "380v input 3.7kw", price: 61640, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 9, name: "T200-11G-4", model: "T200-11G-4", brand: "Zoncn", category: "VFD", spec: "380v input 11kw", price: 94875, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 10, name: "T200-15G-4", model: "T200-15G-4", brand: "Zoncn", category: "VFD", spec: "380v input 15kw", price: 118335, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 11, name: "T200-18.5G-4", model: "T200-18.5G-4", brand: "Zoncn", category: "VFD", spec: "380v input 18.5kw", price: 120750, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 12, name: "T200-22G-4", model: "T200-22G-4", brand: "Zoncn", category: "VFD", spec: "380v input 22kw", price: 130295, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" }
+        ];
 
-    <script src="app.js"></script>
+        let cart = [];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts(products);
+            populateProductSelect();
+            updateStockAlerts();
+        });
+
+        function renderProducts(productsList) {
+            const container = document.getElementById("products-container");
+            container.innerHTML = "";
+            
+            if(productsList.length === 0) {
+                container.innerHTML = "<p style='padding:20px; color:#747d8c;'>No products found in this category.</p>";
+                return;
+            }
+            
+            productsList.forEach(prod => {
+                let stockClass = "in-stock";
+                let stockText = `In Stock (${prod.stock})`;
+                if (prod.stock === 0) { stockClass = "out-of-stock"; stockText = "Out of Stock"; }
+                else if (prod.stock <= 3) { stockClass = "low-stock"; stockText = `Low Stock (${prod.stock})`; }
+
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="product-img" style="background:#fff; display:flex; align-items:center; justify-content:center; height:200px;">
+                            <img src="${prod.image}" alt="${prod.name}" style="max-width:100%; max-height:180px; object-fit:contain; padding:10px;">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-brand">${prod.brand}</span>
+                            <h3 class="product-title">${prod.name}</h3>
+                            <p style="font-size:0.8rem; color:#747d8c; margin-bottom:5px;">Model: ${prod.model}</p>
+                            <div class="product-spec">${prod.spec}</div>
+                            <div class="product-meta">
+                                <span class="price">LKR ${prod.price.toLocaleString()}</span>
+                                <span class="stock-status ${stockClass}">${stockText}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart(${prod.id})" ${prod.stock === 0 ? 'disabled style="background:#b2bec3;"' : ''}>
+                        ${prod.stock === 0 ? 'Unavailable' : '<i class="fa-solid fa-cart-plus"></i> Add to Cart'}
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if(event) event.target.classList.add('active');
+            if (cat === 'all') { renderProducts(products); }
+            else if (cat === 'VFD') { renderProducts(products.filter(p => p.category === 'VFD')); }
+            else { renderProducts(products.filter(p => p.category.toLowerCase() === cat.toLowerCase())); }
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            if (!product || product.stock <= 0) return;
+            const cartItem = cart.find(item => item.id === id);
+            if (cartItem) {
+                if (cartItem.qty < product.stock) { cartItem.qty++; }
+                else { alert("Stock insufficient."); return; }
+            } else { cart.push({ ...product, qty: 1 }); }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.getElementById("cart-items");
+            const cartCount = document.getElementById("cart-count");
+            const cartTotal = document.getElementById("cart-total");
+            cartContainer.innerHTML = "";
+            let total = 0, count = 0;
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+                const div = document.createElement("div");
+                div.className = "cart-item";
+                div.innerHTML = `<div><h4>${item.name}</h4><small>LKR ${item.price.toLocaleString()} x ${item.qty}</small></div><i class="fa-solid fa-trash" style="color:#ff4757; cursor:pointer;" onclick="removeFromCart(${item.id})"></i>`;
+                cartContainer.appendChild(div);
+            });
+            cartCount.innerText = count;
+            cartTotal.innerText = total.toLocaleString();
+        }
+
+        function removeFromCart(id) { cart = cart.filter(item => item.id !== id); updateCartUI(); }
+        function toggleCart() { document.getElementById("cart-sidebar").classList.toggle("open"); }
+        function toggleDashboard() { const m = document.getElementById("dashboard-modal"); m.style.display = m.style.display === "flex" ? "none" : "flex"; }
+        
+        function updateStock(event) {
+            event.preventDefault();
+            const productId = parseInt(document.getElementById("select-product").value);
+            const newPrice = parseFloat(document.getElementById("new-price").value);
+            const newStock = parseInt(document.getElementById("new-stock").value);
+            const prod = products.find(p => p.id === productId);
+            if(prod) {
+                if(!isNaN(newPrice)) prod.price = newPrice;
+                if(!isNaN(newStock)) prod.stock = newStock;
+                renderProducts(products);
+                updateStockAlerts();
+                alert(`Successfully updated ${prod.model}!`);
+            }
+            toggleDashboard();
+        }
+
+        function updateStockAlerts() {
+            const lowStockList = document.getElementById("low-stock-list");
+            if(!lowStockList) return;
+            lowStockList.innerHTML = "";
+            products.filter(p => p.stock <= 3).forEach(p => {
+                const li = document.createElement("li");
+                li.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#ffa502"></i> <strong>${p.model}</strong> - Stock: ${p.stock}`;
+                lowStockList.appendChild(li);
+            });
+        }
+
+        function populateProductSelect() {
+            const select = document.getElementById("select-product");
+            if(!select) return;
+            select.innerHTML = "";
+            products.forEach(p => {
+                const opt = document.createElement("option");
+                opt.value = p.id;
+                opt.innerText = `${p.model} (LKR ${p.price.toLocaleString()})`;
+                select.appendChild(opt);
+            });
+        }
+        function checkoutOrder() { alert("⚡ LB Engineering Order Success!"); cart = []; updateCartUI(); toggleCart(); }
+    </script>
 </body>
 </html>
