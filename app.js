@@ -1,26 +1,55 @@
-// Database Mockup Array / Initial Product Records
-let products = [
-    { id: 1, name: "Delta DVP-14SS2", model: "DVP14SS211R", brand: "Delta", category: "PLC", spec: "8 DI / 6 DO (Relay), 24VDC", price: 24500, stock: 12, icon: "fa-solid fa-microchip" },
-    { id: 2, name: "Siemens SIMATIC S7-1200", model: "CPU 1214C DC/DC/DC", brand: "Siemens", category: "PLC", spec: "14 DI / 10 DO / 2 AI, 24VDC", price: 89000, stock: 3, icon: "fa-solid fa-microchip" },
-    { id: 3, name: "Zoncn VFD Inverter", model: "NZ100-2R2G-2", brand: "Zoncn", category: "VFD", spec: "2.2kW, 3-Phase 220V Input", price: 38000, stock: 15, icon: "fa-solid fa-bolt-lightning" },
-    { id: 4, name: "Hyundai N700E Series VFD", model: "N700E-055HF", brand: "Hyundai", category: "VFD", spec: "5.5kW / 7.5HP, 380V 3-Phase", price: 74000, stock: 2, icon: "fa-solid fa-bolt-lightning" },
-    { id: 5, name: "Wecon HMI Touch Panel", model: "PI3070i", brand: "Wecon", category: "HMI", spec: "7 inch TFT, 800x480, Ethernet", price: 32000, stock: 8, icon: "fa-solid fa-tv" },
-    { id: 6, name: "Autonics Photoelectric Sensor", model: "BR200-DDTN", brand: "Autonics", category: "Sensors", spec: "Diffuse reflective, 200mm, NPN", price: 6800, stock: 25, icon: "fa-solid fa-eye" }
-];
+// Google Sheet Live Integration for LB Engineering
+// Automatically reads data from Google Spreadsheet
 
+const SHEET_ID = '1QW7hjUwejMcnbDeZCqyd0O6SMCBFkPaVt3tc4uPhnk'; 
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+
+let products = [];
 let cart = [];
 
-// Initialize Systems
 document.addEventListener("DOMContentLoaded", () => {
-    renderProducts(products);
-    updateStockAlerts();
-    populateProductSelect();
+    fetchProductsFromSheet();
 });
 
-// Render Product Items UI
+// Fetch Data from Google Sheet
+async function fetchProductsFromSheet() {
+    try {
+        const response = await fetch(SHEET_URL);
+        const text = await response.text();
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const rows = json.table.rows;
+        
+        products = rows.map((row, index) => {
+            return {
+                id: row.c[0] ? parseInt(row.c[0].v) : index + 1,
+                name: row.c[1] ? row.c[1].v : '',
+                model: row.c[2] ? row.c[2].v : '',
+                brand: row.c[3] ? row.c[3].v : '',
+                category: row.c[4] ? row.c[4].v : '',
+                spec: row.c[5] ? row.c[5].v : '',
+                price: row.c[6] ? parseFloat(row.c[6].v) : 0,
+                stock: row.c[7] ? parseInt(row.c[7].v) : 0,
+                image: row.c[8] ? row.c[8].v : 'https://via.placeholder.com/200'
+            };
+        });
+
+        renderProducts(products);
+        populateProductSelect();
+        updateStockAlerts();
+    } catch (error) {
+        console.error("Error fetching data from Google Sheet:", error);
+    }
+}
+
+// Render Products UI
 function renderProducts(productsList) {
     const container = document.getElementById("products-container");
     container.innerHTML = "";
+    
+    if(productsList.length === 0) {
+        container.innerHTML = "<p style='padding:20px; color:#747d8c;'>No products found in this category.</p>";
+        return;
+    }
     
     productsList.forEach(prod => {
         let stockClass = "in-stock";
@@ -38,8 +67,8 @@ function renderProducts(productsList) {
         card.className = "product-card";
         card.innerHTML = `
             <div>
-                <div class="product-img">
-                    <i class="${prod.icon}"></i>
+                <div class="product-img" style="background:#fff; display:flex; align-items:center; justify-content:center;">
+                    <img src="${prod.image}" alt="${prod.name}" style="max-width:100%; max-height:180px; object-fit:contain; padding:10px;">
                 </div>
                 <div class="product-info">
                     <span class="product-brand">${prod.brand}</span>
@@ -68,12 +97,12 @@ function filterCategory(cat) {
     if (cat === 'all') {
         renderProducts(products);
     } else {
-        const filtered = products.filter(p => p.category === cat);
+        const filtered = products.filter(p => p.category.toLowerCase() === cat.toLowerCase());
         renderProducts(filtered);
     }
 }
 
-// Shopping Cart Core Functions
+// Cart Core Functions
 function toggleCart() {
     document.getElementById("cart-sidebar").classList.toggle("open");
 }
@@ -87,7 +116,7 @@ function addToCart(id) {
         if (cartItem.qty < product.stock) {
             cartItem.qty++;
         } else {
-            alert("Cannot add more items than available in technical inventory stock.");
+            alert("Insufficient stock available.");
             return;
         }
     } else {
@@ -130,31 +159,18 @@ function removeFromCart(id) {
     updateCartUI();
 }
 
-// Checkout & E-Commerce Automation Transaction Simulator
 function checkoutOrder() {
     if (cart.length === 0) {
         alert("Your cart is empty.");
         return;
     }
-
-    // Deduct quantity from original inventory (Automated Action)
-    cart.forEach(cartItem => {
-        const product = products.find(p => p.id === cartItem.id);
-        if (product) {
-            product.stock -= cartItem.qty;
-        }
-    });
-
-    alert("? LB Engineering Gateway Simulation:\nPayment Successful! Order Confirmed. Database inventory stock updated automatically.");
-    
+    alert("⚡ LB Engineering Gateway Simulation:\nOrder placed successfully! (Note: Connect a backend API to permanently auto-deduct stock from Google Sheets).");
     cart = [];
     updateCartUI();
-    renderProducts(products);
-    updateStockAlerts();
     toggleCart();
 }
 
-// Administrative Panel / Dashboard Controls
+// Dashboard Portal Logic
 function toggleDashboard() {
     const modal = document.getElementById("dashboard-modal");
     modal.style.display = modal.style.display === "flex" ? "none" : "flex";
@@ -162,12 +178,13 @@ function toggleDashboard() {
 
 function updateStockAlerts() {
     const lowStockList = document.getElementById("low-stock-list");
+    if(!lowStockList) return;
     lowStockList.innerHTML = "";
     
     const lowStockItems = products.filter(p => p.stock <= 3);
     
     if(lowStockItems.length === 0) {
-        lowStockList.innerHTML = "<li><i class='fa-solid fa-circle-check' style='color:green'></i> All automation system stock lines healthy.</li>";
+        lowStockList.innerHTML = "<li><i class='fa-solid fa-circle-check' style='color:green'></i> All inventory stock healthy.</li>";
         return;
     }
 
@@ -175,13 +192,14 @@ function updateStockAlerts() {
         const li = document.createElement("li");
         li.style.color = p.stock === 0 ? "#ff4757" : "#ffa502";
         li.style.marginBottom = "5px";
-        li.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <strong>${p.name}</strong> - Only ${p.stock} Units Left!`;
+        li.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <strong>${p.name}</strong> - Only ${p.stock} left!`;
         lowStockList.appendChild(li);
     });
 }
 
 function populateProductSelect() {
     const select = document.getElementById("select-product");
+    if(!select) return;
     select.innerHTML = "";
     products.forEach(p => {
         const opt = document.createElement("option");
@@ -193,19 +211,6 @@ function populateProductSelect() {
 
 function updateStock(event) {
     event.preventDefault();
-    const pid = parseInt(document.getElementById("select-product").value);
-    const newStock = parseInt(document.getElementById("input-stock").value);
-    const newPrice = parseInt(document.getElementById("input-price").value);
-
-    const product = products.find(p => p.id === pid);
-    if(product) {
-        product.stock = newStock;
-        product.price = newPrice;
-        
-        alert(`Successfully updated data logs for ${product.name}`);
-        renderProducts(products);
-        updateStockAlerts();
-        document.getElementById("stock-form").reset();
-        toggleDashboard();
-    }
+    alert("Notice: Data is managed live from Google Sheets. Please update prices/stock directly inside your Spreadsheet rows to change them permanently.");
+    toggleDashboard();
 }
