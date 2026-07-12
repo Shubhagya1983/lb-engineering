@@ -1,7 +1,7 @@
 // Google Sheet Live Integration for LB Engineering
 // Automatically reads data from Google Spreadsheet
 
-const SHEET_ID = '1QW7hjUwejMcnbDeZCqyd0O6SMCBFkPaVt3tc4uPhnk'; 
+const SHEET_ID = '2PACX-1vT-S985cJUHAGywKh9OaRp2fqegHuRbzwOKwBiH52UxQFYesSd2-aiGe9lvbnndQGr_F8HzloJ_CK55';
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
 let products = [];
