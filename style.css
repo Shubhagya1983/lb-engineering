@@ -21,7 +21,7 @@ body {
     color: #2f3542;
 }
 
-/* Header & Navigation */
+/* Header & Navigation - මෙන්න මෙතන මම ලස්සනට හැදුවා */
 header {
     background-color: var(--primary-color);
     color: white;
@@ -50,9 +50,26 @@ header {
     margin-right: 5px;
 }
 
+/* මෙනුව සහ Cart එක ඈතට යන්නේ නැතුව එක පේළියට තියාගන්න මෙතන හැදුවා */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
 nav ul {
     display: flex;
     list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -70,21 +87,35 @@ nav ul li a:hover, nav ul li a.active {
     color: var(--accent-color);
 }
 
+/* Cart එක සහ රතු රවුම එක උඩ එක වැටෙන්නේ නැති වෙන්න මෙතන හැදුවා */
 .cart-icon {
     position: relative;
     cursor: pointer;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25px;
+    color: #fff;
+    padding: 5px;
 }
 
 #cart-count {
     position: absolute;
-    top: -10px;
-    right: -12px;
+    top: -7px;
+    right: -9px;
     background-color: var(--accent-color);
     color: white;
     font-size: 0.75rem;
-    padding: 2px 6px;
+    font-weight: bold;
     border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 2px;
 }
 
 /* Hero Section */
@@ -416,7 +447,9 @@ footer {
 /* Responsive adjustment */
 @media(max-width: 768px) {
     header { flex-direction: column; gap: 10px; }
+    nav { margin-left: 0; }
     nav ul { margin-top: 10px; }
+    .cart-icon { margin-left: 0; margin-top: 10px; }
     .dashboard-grid { grid-template-columns: 1fr; }
     .sidebar { width: 100%; right: -100%; }
 }
