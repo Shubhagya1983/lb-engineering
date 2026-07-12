@@ -1,155 +1,26 @@
-// LB Engineering - Hardcoded Verified Products Inventory
+// Database Mockup Array / Initial Product Records
 let products = [
-    {
-        id: 1,
-        name: "T200-0R75G-2",
-        model: "T200-0R75G-2",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "230v input 0.75kw",
-        price: 32200,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 2,
-        name: "T200-0R75G-4",
-        model: "T200-0R75G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 0.75kw",
-        price: 33350,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 3,
-        name: "T200-1R5G-2",
-        model: "T200-1R5G-2",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "230v input 1.5kw",
-        price: 34500,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 4,
-        name: "T200-1R5G-4",
-        model: "T200-1R5G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 1.5kw",
-        price: 35650,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 5,
-        name: "T200-2R2G-2",
-        model: "T200-2R2G-2",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "230v input 2.2kw",
-        price: 43470,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 6,
-        name: "T200-2R2G-4",
-        model: "T200-2R2G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 2.2kw",
-        price: 45080,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 7,
-        name: "T200-3R7G-2",
-        model: "T200-3R7G-2",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "230v input 3.7kw",
-        price: 61640,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 8,
-        name: "T200-3R7G-4",
-        model: "T200-3R7G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 3.7kw",
-        price: 61640,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 9,
-        name: "T200-11G-4",
-        model: "T200-11G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 11kw",
-        price: 94875,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 10,
-        name: "T200-15G-4",
-        model: "T200-15G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 15kw",
-        price: 118335,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 11,
-        name: "T200-18.5G-4",
-        model: "T200-18.5G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 18.5kw",
-        price: 120750,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    },
-    {
-        id: 12,
-        name: "T200-22G-4",
-        model: "T200-22G-4",
-        brand: "Zoncn",
-        category: "VFD",
-        spec: "380v input 22kw",
-        price: 130295,
-        stock: 3,
-        image: "https://i.postimg.cc/3xqw4vmC/images.jpg"
-    }
+    { id: 1, name: "Delta DVP-14SS2", model: "DVP14SS211R", brand: "Delta", category: "PLC", spec: "8 DI / 6 DO (Relay), 24VDC", price: 24500, stock: 12, icon: "fa-solid fa-microchip" },
+    { id: 2, name: "Siemens SIMATIC S7-1200", model: "CPU 1214C DC/DC/DC", brand: "Siemens", category: "PLC", spec: "14 DI / 10 DO / 2 AI, 24VDC", price: 89000, stock: 3, icon: "fa-solid fa-microchip" },
+    { id: 3, name: "Zoncn VFD Inverter", model: "NZ100-2R2G-2", brand: "Zoncn", category: "VFD", spec: "2.2kW, 3-Phase 220V Input", price: 38000, stock: 15, icon: "fa-solid fa-bolt-lightning" },
+    { id: 4, name: "Hyundai N700E Series VFD", model: "N700E-055HF", brand: "Hyundai", category: "VFD", spec: "5.5kW / 7.5HP, 380V 3-Phase", price: 74000, stock: 2, icon: "fa-solid fa-bolt-lightning" },
+    { id: 5, name: "Wecon HMI Touch Panel", model: "PI3070i", brand: "Wecon", category: "HMI", spec: "7 inch TFT, 800x480, Ethernet", price: 32000, stock: 8, icon: "fa-solid fa-tv" },
+    { id: 6, name: "Autonics Photoelectric Sensor", model: "BR200-DDTN", brand: "Autonics", category: "Sensors", spec: "Diffuse reflective, 200mm, NPN", price: 6800, stock: 25, icon: "fa-solid fa-eye" }
 ];
 
 let cart = [];
 
+// Initialize Systems
 document.addEventListener("DOMContentLoaded", () => {
     renderProducts(products);
-    populateProductSelect();
     updateStockAlerts();
+    populateProductSelect();
 });
 
+// Render Product Items UI
 function renderProducts(productsList) {
     const container = document.getElementById("products-container");
     container.innerHTML = "";
-    
-    if(productsList.length === 0) {
-        container.innerHTML = "<p style='padding:20px; color:#747d8c;'>No products found in this category.</p>";
-        return;
-    }
     
     productsList.forEach(prod => {
         let stockClass = "in-stock";
@@ -167,8 +38,8 @@ function renderProducts(productsList) {
         card.className = "product-card";
         card.innerHTML = `
             <div>
-                <div class="product-img" style="background:#fff; display:flex; align-items:center; justify-content:center; height:200px;">
-                    <img src="${prod.image}" alt="${prod.name}" style="max-width:100%; max-height:180px; object-fit:contain; padding:10px;">
+                <div class="product-img">
+                    <i class="${prod.icon}"></i>
                 </div>
                 <div class="product-info">
                     <span class="product-brand">${prod.brand}</span>
@@ -189,23 +60,25 @@ function renderProducts(productsList) {
     });
 }
 
+// Category Filter System
 function filterCategory(cat) {
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
     
     if (cat === 'all') {
         renderProducts(products);
-    } else if (cat === 'VFD') {
-        const filtered = products.filter(p => p.category === 'VFD');
-        renderProducts(filtered);
     } else {
-        const filtered = products.filter(p => p.category.toLowerCase() === cat.toLowerCase());
+        const filtered = products.filter(p => p.category === cat);
         renderProducts(filtered);
     }
 }
 
-// Global functions for UI events
-window.addToCart = function(id) {
+// Shopping Cart Core Functions
+function toggleCart() {
+    document.getElementById("cart-sidebar").classList.toggle("open");
+}
+
+function addToCart(id) {
     const product = products.find(p => p.id === id);
     if (!product || product.stock <= 0) return;
 
@@ -214,55 +87,13 @@ window.addToCart = function(id) {
         if (cartItem.qty < product.stock) {
             cartItem.qty++;
         } else {
-            alert("Stock insufficient.");
+            alert("Cannot add more items than available in technical inventory stock.");
             return;
         }
     } else {
         cart.push({ ...product, qty: 1 });
     }
     updateCartUI();
-}
-
-window.removeFromCart = function(id) {
-    cart = cart.filter(item => item.id !== id);
-    updateCartUI();
-}
-
-window.toggleCart = function() {
-    document.getElementById("cart-sidebar").classList.toggle("open");
-}
-
-window.checkoutOrder = function() {
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-    }
-    alert("⚡ LB Engineering Order Gateway:\nOrder placed successfully!");
-    cart = [];
-    updateCartUI();
-    toggleCart();
-}
-
-window.toggleDashboard = function() {
-    const modal = document.getElementById("dashboard-modal");
-    modal.style.display = modal.style.display === "flex" ? "none" : "flex";
-}
-
-window.updateStock = function(event) {
-    event.preventDefault();
-    const productId = parseInt(document.getElementById("select-product").value);
-    const newPrice = parseFloat(document.getElementById("new-price").value);
-    const newStock = parseInt(document.getElementById("new-stock").value);
-    
-    const prod = products.find(p => p.id === productId);
-    if(prod) {
-        if(!isNaN(newPrice)) prod.price = newPrice;
-        if(!isNaN(newStock)) prod.stock = newStock;
-        renderProducts(products);
-        updateStockAlerts();
-        alert(`Successfully updated ${prod.model}!`);
-    }
-    toggleDashboard();
 }
 
 function updateCartUI() {
@@ -294,26 +125,87 @@ function updateCartUI() {
     cartTotal.innerText = total.toLocaleString();
 }
 
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    updateCartUI();
+}
+
+// Checkout & E-Commerce Automation Transaction Simulator
+function checkoutOrder() {
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    // Deduct quantity from original inventory (Automated Action)
+    cart.forEach(cartItem => {
+        const product = products.find(p => p.id === cartItem.id);
+        if (product) {
+            product.stock -= cartItem.qty;
+        }
+    });
+
+    alert("? LB Engineering Gateway Simulation:\nPayment Successful! Order Confirmed. Database inventory stock updated automatically.");
+    
+    cart = [];
+    updateCartUI();
+    renderProducts(products);
+    updateStockAlerts();
+    toggleCart();
+}
+
+// Administrative Panel / Dashboard Controls
+function toggleDashboard() {
+    const modal = document.getElementById("dashboard-modal");
+    modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+}
+
 function updateStockAlerts() {
     const lowStockList = document.getElementById("low-stock-list");
-    if(!lowStockList) return;
     lowStockList.innerHTML = "";
+    
     const lowStockItems = products.filter(p => p.stock <= 3);
+    
+    if(lowStockItems.length === 0) {
+        lowStockList.innerHTML = "<li><i class='fa-solid fa-circle-check' style='color:green'></i> All automation system stock lines healthy.</li>";
+        return;
+    }
+
     lowStockItems.forEach(p => {
         const li = document.createElement("li");
-        li.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#ffa502"></i> <strong>${p.model}</strong> - Stock: ${p.stock}`;
+        li.style.color = p.stock === 0 ? "#ff4757" : "#ffa502";
+        li.style.marginBottom = "5px";
+        li.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <strong>${p.name}</strong> - Only ${p.stock} Units Left!`;
         lowStockList.appendChild(li);
     });
 }
 
 function populateProductSelect() {
     const select = document.getElementById("select-product");
-    if(!select) return;
     select.innerHTML = "";
     products.forEach(p => {
         const opt = document.createElement("option");
         opt.value = p.id;
-        opt.innerText = `${p.model} (LKR ${p.price.toLocaleString()})`;
+        opt.innerText = `${p.brand} - ${p.name} (${p.model})`;
         select.appendChild(opt);
     });
+}
+
+function updateStock(event) {
+    event.preventDefault();
+    const pid = parseInt(document.getElementById("select-product").value);
+    const newStock = parseInt(document.getElementById("input-stock").value);
+    const newPrice = parseInt(document.getElementById("input-price").value);
+
+    const product = products.find(p => p.id === pid);
+    if(product) {
+        product.stock = newStock;
+        product.price = newPrice;
+        
+        alert(`Successfully updated data logs for ${product.name}`);
+        renderProducts(products);
+        updateStockAlerts();
+        document.getElementById("stock-form").reset();
+        toggleDashboard();
+    }
 }
