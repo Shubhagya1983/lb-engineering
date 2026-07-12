@@ -13,61 +13,64 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <i class="fa-solid fa-gear-spin icon-spin" style="color:#ff4757; margin-right:10px;"></i>
-                <span style="color:#fff; font-weight:800;">LB</span> <span style="color:#ff4757; font-weight:800;">Engineering</span>
+                <i class="fa-solid fa-gear icon-accent"></i>
+                LB <span>Engineering</span>
             </div>
             <nav>
-                <a href="#home">Home</a>
-                <a href="#products">Products</a>
-                <a href="#services">Services</a>
-                <a href="javascript:void(0)" onclick="toggleDashboard()">Admin Portal</a>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleDashboard()">Admin Portal</a></li>
+                    <li>
+                        <div class="cart-icon" onclick="toggleCart()">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="cart-count">0</span>
+                        </div>
+                    </li>
+                </ul>
             </nav>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span id="cart-count">0</span>
-            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero-section" id="home">
         <div class="hero-content">
             <h1>Premium Industrial Automation Solutions</h1>
             <p>Your trusted partner for PLCs, VFDs, HMIs, Sensors, and Elite Engineering Services.</p>
-            <a href="#products" class="btn-hero">Explore Products <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </section>
 
     <!-- Products Store Section -->
-    <section class="products-section" id="products">
-        <div class="section-title">
-            <h2>Automation Equipment Store</h2>
-        </div>
-        
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterCategory('all')">All Products</button>
-            <button class="filter-btn" onclick="filterCategory('PLC')">PLC Systems</button>
-            <button class="filter-btn" onclick="filterCategory('VFD')">VFD / Inverters</button>
-            <button class="filter-btn" onclick="filterCategory('HMI')">HMI Panels</button>
-            <button class="filter-btn" onclick="filterCategory('Sensors')">Sensors</button>
-        </div>
+    <div class="container">
+        <section class="section" id="products">
+            <h2 class="section-title">Automation Equipment Store</h2>
+            
+            <div class="category-filter">
+                <button class="filter-btn active" onclick="filterCategory('all')">All Products</button>
+                <button class="filter-btn" onclick="filterCategory('PLC')">PLC Systems</button>
+                <button class="filter-btn" onclick="filterCategory('VFD')">VFD / Inverters</button>
+                <button class="filter-btn" onclick="filterCategory('HMI')">HMI Panels</button>
+                <button class="filter-btn" onclick="filterCategory('Sensors')">Sensors</button>
+            </div>
 
-        <div class="products-grid" id="products-container">
-            <!-- Products will load here dynamically via JavaScript -->
-        </div>
-    </section>
+            <div class="products-grid" id="products-container">
+                <!-- Products will load here dynamically via JavaScript -->
+            </div>
+        </section>
+    </div>
 
     <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
+    <div class="sidebar" id="cart-sidebar">
+        <div class="sidebar-header">
             <h3>Your Shopping Cart</h3>
-            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()"></i>
+            <i class="fa-solid fa-xmark close-btn" onclick="toggleCart()"></i>
         </div>
-        <div class="cart-body" id="cart-items">
+        <div class="sidebar-content" id="cart-items">
             <!-- Cart items will display here -->
         </div>
-        <div class="cart-footer">
-            <div class="total-container">
+        <div class="sidebar-footer">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">
                 <span>Total:</span>
                 <span>LKR <span id="cart-total">0</span></span>
             </div>
@@ -76,48 +79,75 @@
     </div>
 
     <!-- Admin Dashboard Modal -->
-    <div class="dashboard-modal" id="dashboard-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:2000; align-items:center; justify-content:center;">
-        <div class="dashboard-content" style="background:#fff; padding:30px; border-radius:10px; width:90%; max-width:500px; position:relative;">
-            <i class="fa-solid fa-xmark" style="position:absolute; top:15px; right:20px; font-size:1.5rem; cursor:pointer;" onclick="toggleDashboard()"></i>
-            <h3 style="margin-bottom:20px; color:#2c3e50;"><i class="fa-solid fa-sliders"></i> Control Panel / Price Editor</h3>
-            
-            <form id="stock-form" onsubmit="updateStock(event)">
-                <div style="margin-bottom:15px;">
-                    <label style="display:block; margin-bottom:5px; font-weight:600;">Select Product Item:</label>
-                    <select id="select-product" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;"></select>
+    <div class="modal" id="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-sliders"></i> Control Panel / Price Editor</h3>
+                <i class="fa-solid fa-xmark close-btn" onclick="toggleDashboard()"></i>
+            </div>
+            <div class="modal-body">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <form id="stock-form" onsubmit="updateStock(event)">
+                            <div class="form-group">
+                                <label>Select Product Item:</label>
+                                <select id="select-product"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>New Price (LKR):</label>
+                                <input type="number" id="new-price" placeholder="Enter new price">
+                            </div>
+                            <div class="form-group">
+                                <label>Update Stock Level:</label>
+                                <input type="number" id="new-stock" placeholder="Enter stock quantity">
+                            </div>
+                            <button type="submit" class="btn-primary">Apply Update Logs</button>
+                        </form>
+                    </div>
+                    <div class="dashboard-card alert-card">
+                        <h4 style="color:#ff3f34; margin-bottom:10px;"><i class="fa-solid fa-bell"></i> Critical Stock Logs</h4>
+                        <ul id="low-stock-list" style="list-style:none; padding:0; font-size:0.9rem; line-height:2;"></ul>
+                    </div>
                 </div>
-                <div style="margin-bottom:15px;">
-                    <label style="display:block; margin-bottom:5px; font-weight:600;">New Price (LKR):</label>
-                    <input type="number" id="new-price" placeholder="Enter new price" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:5px; font-weight:600;">Update Stock Level:</label>
-                    <input type="number" id="new-stock" placeholder="Enter stock quantity" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
-                </div>
-                <button type="submit" style="width:100%; background:#ff4757; color:#fff; border:none; padding:12px; font-weight:bold; border-radius:5px; cursor:pointer;">Apply Update Logs</button>
-            </form>
-            
-            <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
-            <h4 style="color:#ff4757; margin-bottom:10px;"><i class="fa-solid fa-bell"></i> Critical Stock Logs</h4>
-            <ul id="low-stock-list" style="list-style:none; padding:0; font-size:0.9rem;"></ul>
+            </div>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 LB Engineering. All Rights Reserved.</p>
+    </footer>
 
     <!-- JavaScript Inventory Logic Section -->
     <script>
         let products = [
-            { id: 1, name: "T200-0R75G-2", model: "T200-0R75G-2", brand: "Zoncn", category: "VFD", spec: "230v input 0.75kw", price: 32200, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 2, name: "T200-0R75G-4", model: "T200-0R75G-4", brand: "Zoncn", category: "VFD", spec: "380v input 0.75kw", price: 33350, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 3, name: "T200-1R5G-2", model: "T200-1R5G-2", brand: "Zoncn", category: "VFD", spec: "230v input 1.5kw", price: 34500, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 4, name: "T200-1R5G-4", model: "T200-1R5G-4", brand: "Zoncn", category: "VFD", spec: "380v input 1.5kw", price: 35650, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 5, name: "T200-2R2G-2", model: "T200-2R2G-2", brand: "Zoncn", category: "VFD", spec: "230v input 2.2kw", price: 43470, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 6, name: "T200-2R2G-4", model: "T200-2R2G-4", brand: "Zoncn", category: "VFD", spec: "380v input 2.2kw", price: 45080, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 7, name: "T200-3R7G-2", model: "T200-3R7G-2", brand: "Zoncn", category: "VFD", spec: "230v input 3.7kw", price: 61640, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 8, name: "T200-3R7G-4", model: "T200-3R7G-4", brand: "Zoncn", category: "VFD", spec: "380v input 3.7kw", price: 61640, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 9, name: "T200-11G-4", model: "T200-11G-4", brand: "Zoncn", category: "VFD", spec: "380v input 11kw", price: 94875, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 10, name: "T200-15G-4", model: "T200-15G-4", brand: "Zoncn", category: "VFD", spec: "380v input 15kw", price: 118335, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 11, name: "T200-18.5G-4", model: "T200-18.5G-4", brand: "Zoncn", category: "VFD", spec: "380v input 18.5kw", price: 120750, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
-            { id: 12, name: "T200-22G-4", model: "T200-22G-4", brand: "Zoncn", category: "VFD", spec: "380v input 22kw", price: 130295, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" }
+            // --- ZONCN VFD LINEUP (12 Items) ---
+            { id: 1, name: "Zoncn VFD", model: "T200-0R75G-2", brand: "Zoncn", category: "VFD", spec: "230v input 0.75kw", price: 32200, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 2, name: "Zoncn VFD", model: "T200-0R75G-4", brand: "Zoncn", category: "VFD", spec: "380v input 0.75kw", price: 33350, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 3, name: "Zoncn VFD", model: "T200-1R5G-2", brand: "Zoncn", category: "VFD", spec: "230v input 1.5kw", price: 34500, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 4, name: "Zoncn VFD", model: "T200-1R5G-4", brand: "Zoncn", category: "VFD", spec: "380v input 1.5kw", price: 35650, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 5, name: "Zoncn VFD", model: "T200-2R2G-2", brand: "Zoncn", category: "VFD", spec: "230v input 2.2kw", price: 43470, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 6, name: "Zoncn VFD", model: "T200-2R2G-4", brand: "Zoncn", category: "VFD", spec: "380v input 2.2kw", price: 45080, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 7, name: "Zoncn VFD", model: "T200-3R7G-2", brand: "Zoncn", category: "VFD", spec: "230v input 3.7kw", price: 61640, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 8, name: "Zoncn VFD", model: "T200-3R7G-4", brand: "Zoncn", category: "VFD", spec: "380v input 3.7kw", price: 61640, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 9, name: "Zoncn VFD", model: "T200-11G-4", brand: "Zoncn", category: "VFD", spec: "380v input 11kw", price: 94875, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 10, name: "Zoncn VFD", model: "T200-15G-4", brand: "Zoncn", category: "VFD", spec: "380v input 15kw", price: 118335, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 11, name: "Zoncn VFD", model: "T200-18.5G-4", brand: "Zoncn", category: "VFD", spec: "380v input 18.5kw", price: 120750, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+            { id: 12, name: "Zoncn VFD", model: "T200-22G-4", brand: "Zoncn", category: "VFD", spec: "380v input 22kw", price: 130295, stock: 3, image: "https://i.postimg.cc/3xqw4vmC/images.jpg" },
+
+            // --- HBD 200 SERIES LINEUP (Clean Price & Description) ---
+            { id: 13, name: "HBD 200 Series", model: "HBD-200-1R5G-2", brand: "HBD", category: "VFD", spec: "230V input 1.5kW", price: 20240, stock: 3, image: "https://i.postimg.cc/dQm93j0F/1.jpg" },
+            { id: 14, name: "HBD 200 Series", model: "HBD-200-1R5G-4", brand: "HBD", category: "VFD", spec: "380V input 1.5kW", price: 20240, stock: 3, image: "https://i.postimg.cc/dQm93j0F/1.jpg" },
+
+            // --- HBD 550 SERIES LINEUP (Clean Price & Description) ---
+            { id: 15, name: "HBD 550 Series", model: "HBD-550-0R75G-2", brand: "HBD", category: "VFD", spec: "220V input 0.75kW", price: 27140, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 16, name: "HBD 550 Series", model: "HBD-550-1R5G-2", brand: "HBD", category: "VFD", spec: "220V input 1.5kW", price: 27715, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 17, name: "HBD 550 Series", model: "HBD-550-2R2G-2", brand: "HBD", category: "VFD", spec: "220V input 2.2kW", price: 31395, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 18, name: "HBD 550 Series", model: "HBD-550-0R75G-4", brand: "HBD", category: "VFD", spec: "380V input 0.75kW", price: 27140, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 19, name: "HBD 550 Series", model: "HBD-550-1R5G-4", brand: "HBD", category: "VFD", spec: "380V input 1.5kW", price: 27715, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 20, name: "HBD 550 Series", model: "HBD-550-2R2G-4", brand: "HBD", category: "VFD", spec: "380V input 2.2kW", price: 31395, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 21, name: "HBD 550 Series", model: "HBD-550-5R5G-4", brand: "HBD", category: "VFD", spec: "380V input 5.5kW", price: 54970, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 22, name: "HBD 550 Series", model: "HBD-550-11G-4", brand: "HBD", category: "VFD", spec: "380V input 11kW", price: 72565, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" },
+            { id: 23, name: "HBD 550 Series", model: "HBD-550-15G-4", brand: "HBD", category: "VFD", spec: "380V input 15kW", price: 88320, stock: 3, image: "https://i.postimg.cc/FHBW3QG5/2.jpg" }
         ];
 
         let cart = [];
@@ -148,12 +178,12 @@
                 card.innerHTML = `
                     <div>
                         <div class="product-img" style="background:#fff; display:flex; align-items:center; justify-content:center; height:200px;">
-                            <img src="${prod.image}" alt="${prod.name}" style="max-width:100%; max-height:180px; object-fit:contain; padding:10px;">
+                            <img src="${prod.image}" alt="${prod.model}" style="max-width:100%; max-height:180px; object-fit:contain; padding:10px;">
                         </div>
                         <div class="product-info">
                             <span class="product-brand">${prod.brand}</span>
-                            <h3 class="product-title">${prod.name}</h3>
-                            <p style="font-size:0.8rem; color:#747d8c; margin-bottom:5px;">Model: ${prod.model}</p>
+                            <h3 class="product-title">${prod.model}</h3>
+                            <p style="font-size:0.8rem; color:#747d8c; margin-bottom:5px;">Series: ${prod.name}</p>
                             <div class="product-spec">${prod.spec}</div>
                             <div class="product-meta">
                                 <span class="price">LKR ${prod.price.toLocaleString()}</span>
@@ -162,7 +192,7 @@
                         </div>
                     </div>
                     <button class="btn-add-cart" onclick="addToCart(${prod.id})" ${prod.stock === 0 ? 'disabled style="background:#b2bec3;"' : ''}>
-                        ${prod.stock === 0 ? 'Unavailable' : '<i class="fa-solid fa-cart-plus"></i> Add to Cart'}
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
                     </button>
                 `;
                 container.appendChild(card);
@@ -199,7 +229,7 @@
                 count += item.qty;
                 const div = document.createElement("div");
                 div.className = "cart-item";
-                div.innerHTML = `<div><h4>${item.name}</h4><small>LKR ${item.price.toLocaleString()} x ${item.qty}</small></div><i class="fa-solid fa-trash" style="color:#ff4757; cursor:pointer;" onclick="removeFromCart(${item.id})"></i>`;
+                div.innerHTML = `<div><h4>${item.model}</h4><small>LKR ${item.price.toLocaleString()} x ${item.qty}</small></div><i class="fa-solid fa-trash" style="color:#ff4757; cursor:pointer;" onclick="removeFromCart(${item.id})"></i>`;
                 cartContainer.appendChild(div);
             });
             cartCount.innerText = count;
@@ -244,7 +274,7 @@
             products.forEach(p => {
                 const opt = document.createElement("option");
                 opt.value = p.id;
-                opt.innerText = `${p.model} (LKR ${p.price.toLocaleString()})`;
+                opt.innerText = `${p.brand} - ${p.model} (LKR ${p.price.toLocaleString()})`;
                 select.appendChild(opt);
             });
         }
